@@ -13,10 +13,10 @@ from PIL import Image, ImageOps, ImageEnhance, ImageDraw, ImageStat, ImageFilter
 from decimal import *
 from xml.dom.minidom import parse
 
-ADDON = xbmcaddon.Addon()
-ADDON_ID = ADDON.getAddonInfo('id')
-ADDON_LANGUAGE = ADDON.getLocalizedString
-ADDON_DATA_PATH = os.path.join(xbmc.translatePath("special://profile/addon_data/%s" % ADDON_ID))
+AEONT_ADDON = xbmcaddon.Addon()
+AEONT_ADDON_ID = AEONT_ADDON.getAddonInfo('id')
+AEONT_ADDON_LANGUAGE = AEONT_ADDON.getLocalizedString
+AEONT_ADDON_DATA_PATH = os.path.join(xbmc.translatePath("special://profile/addon_data/%s" % AEONT_ADDON_ID))
 HOME = xbmcgui.Window(10000)
 
 def Random_Color():
@@ -66,7 +66,7 @@ def Show_Percentage():
 def Overall_Color(filterimage):
     md5 = hashlib.md5(filterimage).hexdigest()
     filename = md5 + ".png"
-    targetfile = os.path.join(ADDON_DATA_PATH, filename)
+    targetfile = os.path.join(AEONT_ADDON_DATA_PATH, filename)
     cachedthumb = xbmc.getCacheThumbName(filterimage)
     xbmc_vid_cache_file = os.path.join("special://profile/Thumbnails/Video", cachedthumb[0], cachedthumb)
     xbmc_cache_file = os.path.join("special://profile/Thumbnails/", cachedthumb[0], cachedthumb[:-4] + ".jpg")
@@ -108,7 +108,7 @@ def Overall_Color(filterimage):
 def Frequent_Color(filterimage):
     md5 = hashlib.md5(filterimage).hexdigest()
     filename = md5 + ".png"
-    targetfile = os.path.join(ADDON_DATA_PATH, filename)
+    targetfile = os.path.join(AEONT_ADDON_DATA_PATH, filename)
     cachedthumb = xbmc.getCacheThumbName(filterimage)
     xbmc_vid_cache_file = os.path.join("special://profile/Thumbnails/Video", cachedthumb[0], cachedthumb)
     xbmc_cache_file = os.path.join("special://profile/Thumbnails/", cachedthumb[0], cachedthumb[:-4] + ".jpg")
@@ -183,7 +183,7 @@ def clamp(x):
 def log(txt):
     if isinstance(txt, str):
         txt = txt.decode("utf-8")
-    message = u'%s: %s' % (ADDON_ID, txt)
+    message = u'%s: %s' % (AEONT_ADDON_ID, txt)
     xbmc.log(msg=message.encode("utf-8"), level=xbmc.LOGDEBUG)
 
 

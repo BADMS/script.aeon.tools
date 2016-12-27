@@ -4,14 +4,14 @@ import xbmc
 import xbmcgui
 import xbmcaddon
 
-ADDON = xbmcaddon.Addon()
-ADDON_VERSION = ADDON.getAddonInfo('version')
-ADDON_LANGUAGE = ADDON.getLocalizedString
-ADDON_PATH = ADDON.getAddonInfo('path').decode("utf-8")
-ADDON_ID = ADDON.getAddonInfo('id')
-ADDON_DATA_PATH = os.path.join(xbmc.translatePath("special://profile/addon_data/%s" % ADDON_ID))
+AEONT_ADDON = xbmcaddon.Addon()
+AEONT_ADDON_VERSION = AEONT_ADDON.getAddonInfo('version')
+AEONT_ADDON_LANGUAGE = AEONT_ADDON.getLocalizedString
+AEONT_ADDON_PATH = AEONT_ADDON.getAddonInfo('path').decode("utf-8")
+AEONT_ADDON_ID = AEONT_ADDON.getAddonInfo('id')
+AEONT_ADDON_DATA_PATH = os.path.join(xbmc.translatePath("special://profile/addon_data/%s" % AEONT_ADDON_ID))
 HOME = xbmcgui.Window(10000)
-sys.path.append(xbmc.translatePath(os.path.join(ADDON_PATH, 'resources', 'lib')))
+sys.path.append(xbmc.translatePath(os.path.join(AEONT_ADDON_PATH, 'resources', 'lib')))
 
 from Utils import *
 
@@ -19,16 +19,16 @@ from Utils import *
 class Aeon_Tools_Main:
 
     def __init__(self):
-        log("version %s started" % ADDON_VERSION)
+        log("version %s started" % AEONT_ADDON_VERSION)
         self._init_vars()
         self._parse_argv()
         if self.infos:
             self._StartInfoActions()
         if self.control == "plugin":
             xbmcplugin.endOfDirectory(self.handle)
-        if not xbmcvfs.exists(ADDON_DATA_PATH):
+        if not xbmcvfs.exists(AEONT_ADDON_DATA_PATH):
             # addon data path does not exist...create it
-            xbmcvfs.mkdir(ADDON_DATA_PATH)
+            xbmcvfs.mkdir(AEONT_ADDON_DATA_PATH)
         while self.daemon and not xbmc.abortRequested:
             if not HOME.getProperty("cpa_aeon_set") == 'none':
                 self.image_now_cpa = xbmc.getInfoLabel("Control.GetLabel(7978)")
