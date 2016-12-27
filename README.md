@@ -56,7 +56,7 @@ And you can process any other art via say:
 	Window(home).Property(UNIQUE_IDENTIFIER.ImageOldColor) & Window(home).Property(UNIQUE_IDENTIFIER.ImageOldCColor)
 
 
-The tool makes a cache of shrunk image files for faster getcolor calcs, these are 192x192 (192x108 made for fanart as AR is maintained, so this nicely equals 10x10 full screen fill if needed with no clipping /useless info).
+The tool makes a cache of shrunk image files for faster getcolor calcs, these are 128x128 (128x72 made for fanart as AR is maintained, so this nicely equals 10x10 full screen fill if needed with no clipping [native display gui is 1280x720!!] /useless info).
 
 
 

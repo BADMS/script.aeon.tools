@@ -96,7 +96,7 @@ def Overall_Color(filterimage):
                 xbmc.sleep(300)
         if not img:
             return "", ""
-        img.thumbnail((192, 192), Image.ANTIALIAS)
+        img.thumbnail((128, 128), Image.ANTIALIAS)
         img = img.convert('RGB')
         img.save(targetfile)
     else:
@@ -138,7 +138,7 @@ def Frequent_Color(filterimage):
                 xbmc.sleep(300)
         if not img:
             return "", ""
-        img.thumbnail((192, 192), Image.ANTIALIAS)
+        img.thumbnail((128, 128), Image.ANTIALIAS)
         img = img.convert('RGB')
         img.save(targetfile)
     else:
