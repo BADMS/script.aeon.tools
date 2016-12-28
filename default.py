@@ -31,58 +31,58 @@ class Aeon_Tools_Main:
             xbmcvfs.mkdir(AEONT_ADDON_DATA_PATH)
         while self.daemon and not xbmc.abortRequested:
             if not HOME.getProperty("cpa_aeon_set") == 'none':
-                self.image_now_cpa = xbmc.getInfoLabel("Control.GetLabel(7978)")
-                if self.image_now_cpa == '' and HOME.getProperty("cpa_aeon_fallback") != '':
-                    self.image_now_cpa = HOME.getProperty("cpa_aeon_fallback")
-                if self.image_now_cpa != self.image_prev_cpa:
+                self.aeont_image_now_cpa = xbmc.getInfoLabel("Control.GetLabel(7978)")
+                if self.aeont_image_now_cpa == '' and HOME.getProperty("cpa_aeon_fallback") != '':
+                    self.aeont_image_now_cpa = HOME.getProperty("cpa_aeon_fallback")
+                if self.aeont_image_now_cpa != self.aeont_image_prev_cpa:
                     try:
-                        self.image_prev_cpa = self.image_now_cpa
+                        self.aeont_image_prev_cpa = self.aeont_image_now_cpa
                         HOME.setProperty("aeon_tools_OldColorcpa", HOME.getProperty("aeon_tools_Colorcpa"))
                         HOME.setProperty("aeon_tools_OldCColorcpa", HOME.getProperty("aeon_tools_CColorcpa"))
                         HOME.setProperty('aeon_tools_ImageUpdating', '0')
                         if HOME.getProperty("cpa_aeon_set") == 'overall_color':
-                            imagecolor = Overall_Color(self.image_now_cpa)
+                            imagecolor = Overall_Color(self.aeont_image_now_cpa)
                             HOME.setProperty("aeon_tools_Colorcpa", imagecolor)
                             HOME.setProperty("aeon_tools_CColorcpa", Complementary_Color(imagecolor))
                         elif HOME.getProperty("cpa_aeon_set") == 'frequent_color':
-                            imagecolor = Frequent_Color(self.image_now_cpa)
+                            imagecolor = Frequent_Color(self.aeont_image_now_cpa)
                             HOME.setProperty("aeon_tools_Colorcpa", imagecolor)
                             HOME.setProperty("aeon_tools_CColorcpa", Complementary_Color(imagecolor))
                     except:
                         log("Could not process image for cpa daemon")
                     HOME.setProperty('aeon_tools_ImageUpdating', '1')
             if not HOME.getProperty("cfa_aeon_set") == 'none':
-                self.image_now_cfa = xbmc.getInfoLabel("Control.GetLabel(7977)")
-                if self.image_now_cfa != self.image_prev_cfa:
+                self.aeont_image_now_cfa = xbmc.getInfoLabel("Control.GetLabel(7977)")
+                if self.aeont_image_now_cfa != self.aeont_image_prev_cfa:
                     try:
-                        self.image_prev_cfa = self.image_now_cfa
+                        self.aeont_image_prev_cfa = self.aeont_image_now_cfa
                         HOME.setProperty("aeon_tools_OldColorcfa", HOME.getProperty("aeon_tools_Colorcfa"))
                         HOME.setProperty("aeon_tools_OldCColorcfa", HOME.getProperty("aeon_tools_CColorcfa"))
                         HOME.setProperty('aeon_tools_ImageUpdating', '0')
                         if HOME.getProperty("cfa_aeon_set") == 'overall_color':
-                            imagecolor = Overall_Color(self.image_now_cfa)
+                            imagecolor = Overall_Color(self.aeont_image_now_cfa)
                             HOME.setProperty("aeon_tools_Colorcfa", imagecolor)
                             HOME.setProperty("aeon_tools_CColorcfa", Complementary_Color(imagecolor))
                         elif HOME.getProperty("cfa_aeon_set") == 'frequent_color':
-                            imagecolor = Frequent_Color(self.image_now_cfa)
+                            imagecolor = Frequent_Color(self.aeont_image_now_cfa)
                             HOME.setProperty("aeon_tools_Colorcfa", imagecolor)
                             HOME.setProperty("aeon_tools_CColorcfa", Complementary_Color(imagecolor))
                     except:
                         log("Could not process image for cfa daemon")
                     HOME.setProperty('aeon_tools_ImageUpdating', '1')
-            self.image_now = xbmc.getInfoLabel("Player.Art(thumb)")
-            self.image_now_fa = xbmc.getInfoLabel("MusicPlayer.Property(Fanart_Image)")
-            if self.image_now != self.image_prev and xbmc.Player().isPlayingAudio():
+            self.aeont_image_now = xbmc.getInfoLabel("Player.Art(thumb)")
+            self.aeont_image_now_fa = xbmc.getInfoLabel("MusicPlayer.Property(Fanart_Image)")
+            if self.aeont_image_now != self.aeont_image_prev and xbmc.Player().isPlayingAudio():
                 try:
-                    self.image_prev = self.image_now
-                    imagecolor = Overall_Color(self.image_now)
+                    self.aeont_image_prev = self.aeont_image_now
+                    imagecolor = Overall_Color(self.aeont_image_now)
                     HOME.setProperty("ImageColor1", imagecolor)
                 except:
                     log("Could not process image for f daemon")
-            if self.image_now_fa != self.image_prev_fa and xbmc.Player().isPlayingAudio():
+            if self.aeont_image_now_fa != self.aeont_image_prev_fa and xbmc.Player().isPlayingAudio():
                 try:
-                    self.image_prev_fa = self.image_now_fa
-                    imagecolor = Overall_Color(self.image_now_fa)
+                    self.aeont_image_prev_fa = self.aeont_image_now_fa
+                    imagecolor = Overall_Color(self.aeont_image_now_fa)
                     HOME.setProperty("ImageColorfa1", imagecolor)
                 except:
                     log("Could not process image for fa daemon")
@@ -113,17 +113,14 @@ class Aeon_Tools_Main:
         self.dbid = ""
         self.prefix = ""
         self.daemon = False
-        self.show_now = ""
-        self.image_now = ""
-        self.image_now_fa = ""
-        self.image_now_cfa = ""
-        self.image_now_cpa = ""
-        self.show_prev = ""
-        self.image_prev = ""
-        self.image_prev_fa = ""
-        self.image_prev_cfa = ""
-        self.image_prev_cpa = ""
-        self.show_watched = ""
+        self.aeont_image_now = ""
+        self.aeont_image_now_fa = ""
+        self.aeont_image_now_cfa = ""
+        self.aeont_image_now_cpa = ""
+        self.aeont_image_prev = ""
+        self.aeont_image_prev_fa = ""
+        self.aeont_image_prev_cfa = ""
+        self.aeont_image_prev_cpa = ""
         self.autoclose = ""
 
     def _parse_argv(self):

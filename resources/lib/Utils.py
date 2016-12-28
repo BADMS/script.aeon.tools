@@ -19,8 +19,10 @@ AEONT_ADDON_LANGUAGE = AEONT_ADDON.getLocalizedString
 AEONT_ADDON_DATA_PATH = os.path.join(xbmc.translatePath("special://profile/addon_data/%s" % AEONT_ADDON_ID))
 HOME = xbmcgui.Window(10000)
 
+
 def Random_Color():
     return "ff" + "%06x" % random.randint(0, 0xFFFFFF)
+
 
 def Complementary_Color(hex_color):
     """Returns complementary RGB color [should be format((255!]
@@ -41,6 +43,7 @@ def Complementary_Color(hex_color):
     """
     return "FF" + "%s" % ''.join(comp)
 
+
 def RemoveQuotes(label):
     if label.startswith("'") and label.endswith("'") and len(label) > 2:
         label = label[1:-1]
@@ -48,20 +51,6 @@ def RemoveQuotes(label):
             label = label[1:-1]
     return label
 
-def Show_Percentage():
-    """nitems = int(xbmc.getInfoLabel('Container().NumItems'))
-    for x in range(0, nitems):"""
-    try:
-        stot = int(xbmc.getInfoLabel('ListItem.Property(TotalEpisodes)'))
-        wtot = int(xbmc.getInfoLabel('ListItem.Property(WatchedEpisodes)'))
-        """dbid = int(xbmc.getInfoLabel('ListItem(%s).DBID' %x))"""
-        getcontext().prec = 6
-        perc = "{:.0f}".format(100 / Decimal(stot) * Decimal(wtot))
-        """prop = "%i.Show_Percentage" % dbid"""
-        HOME.setProperty("Show_Percentage", perc)
-    except:
-        return
-    return
 
 def Overall_Color(filterimage):
     md5 = hashlib.md5(filterimage).hexdigest()
