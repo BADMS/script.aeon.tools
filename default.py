@@ -22,13 +22,13 @@ class Aeon_Tools_Main:
         log("version %s started" % AEONT_ADDON_VERSION)
         self._init_vars()
         self._parse_argv()
+        if not xbmcvfs.exists(AEONT_ADDON_DATA_PATH):
+            # addon data path does not exist...create it
+            xbmcvfs.mkdir(AEONT_ADDON_DATA_PATH)
         if self.infos:
             self._StartInfoActions()
         if self.control == "plugin":
             xbmcplugin.endOfDirectory(self.handle)
-        if not xbmcvfs.exists(AEONT_ADDON_DATA_PATH):
-            # addon data path does not exist...create it
-            xbmcvfs.mkdir(AEONT_ADDON_DATA_PATH)
         while self.daemon and not xbmc.abortRequested:
             if not HOME.getProperty("cpa_aeon_set") == 'none':
                 self.aeont_image_now_cpa = xbmc.getInfoLabel("Control.GetLabel(7978)")
