@@ -50,7 +50,6 @@ class Aeon_Tools_Main:
                             HOME.setProperty("aeon_tools_CColorcpa", Complementary_Color(imagecolor))
                     except:
                         log("Could not process image for cpa daemon")
-                    HOME.setProperty('aeon_tools_ImageUpdating', '1')
             if not HOME.getProperty("cfa_aeon_set") == 'none':
                 self.aeont_image_now_cfa = xbmc.getInfoLabel("Control.GetLabel(7977)")
                 if self.aeont_image_now_cfa != self.aeont_image_prev_cfa:
@@ -69,7 +68,6 @@ class Aeon_Tools_Main:
                             HOME.setProperty("aeon_tools_CColorcfa", Complementary_Color(imagecolor))
                     except:
                         log("Could not process image for cfa daemon")
-                    HOME.setProperty('aeon_tools_ImageUpdating', '1')
             self.aeont_image_now = xbmc.getInfoLabel("Player.Art(thumb)")
             self.aeont_image_now_fa = xbmc.getInfoLabel("MusicPlayer.Property(Fanart_Image)")
             if self.aeont_image_now != self.aeont_image_prev and xbmc.Player().isPlayingAudio():
@@ -86,6 +84,7 @@ class Aeon_Tools_Main:
                     HOME.setProperty("ImageColorfa1", imagecolor)
                 except:
                     log("Could not process image for fa daemon")
+            HOME.setProperty('aeon_tools_ImageUpdating', '1')
             xbmc.sleep(300)
 
     def _StartInfoActions(self):
