@@ -32,7 +32,7 @@ The daemon always processes current 7977 and current 7978, so you have color fro
 
 Plus now old colors in aeon_tools_OldColorcpa & aeon_tools_OldColorcfa, plus the complimentary old colors in aeon_tools_OldCColorcpa & aeon_tools_OldCColorcfa
 
-Have changed 'ImageUpdating' to 'aeon_tools_ImageUpdating'
+Have changed 'aeon_tools_ImageUpdating' to 'aeon_tools_7977ImageUpdating' & 'aeon_tools_7978ImageUpdating'
 
 
 Hopefully you can see what to change to work with aeon.
