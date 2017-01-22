@@ -22,6 +22,14 @@ class Aeon_Tools_Main:
         log("version %s started" % AEONT_ADDON_VERSION)
         self._init_vars()
         self._parse_argv()
+        HOME.setProperty("Oldaeon_tools_Colorcpa", "FF000000")
+        HOME.setProperty("aeon_tools_Colorcpa", "FF000000")
+        HOME.setProperty("Oldaeon_tools_CColorcpa", "FF000000")
+        HOME.setProperty("aeon_tools_CColorcpa", "FF000000")
+        HOME.setProperty("Oldaeon_tools_Colorcfa", "FF000000")
+        HOME.setProperty("aeon_tools_Colorcfa", "FF000000")
+        HOME.setProperty("Oldaeon_tools_CColorcfa", "FF000000")
+        HOME.setProperty("aeon_tools_CColorcfa", "FF000000")
         if not xbmcvfs.exists(AEONT_ADDON_DATA_PATH):
             # addon data path does not exist...create it
             xbmcvfs.mkdir(AEONT_ADDON_DATA_PATH)
@@ -36,27 +44,27 @@ class Aeon_Tools_Main:
                     self.aeont_image_now_cpa = HOME.getProperty("cpa_aeon_fallback")
                 if self.aeont_image_now_cpa != self.aeont_image_prev_cpa:
                     self.aeont_image_prev_cpa = self.aeont_image_now_cpa
-                    try:
-                        HOME.setProperty("aeon_tools_OldColorcpa", HOME.getProperty("aeon_tools_Colorcpa"))
-                        HOME.setProperty("aeon_tools_OldCColorcpa", HOME.getProperty("aeon_tools_CColorcpa"))
-                        HOME.setProperty('aeon_tools_7978ImageUpdating', '0')
-                        Color_Only(self.aeont_image_now_cpa, "aeon_tools_Colorcpa", "aeon_tools_CColorcpa", "aeon_tools_FColorcpa")
-                    except:
-                        HOME.setProperty('aeon_tools_7978ImageUpdating', '1')
-                        log("Could not process image for cpa daemon")
+                try:
+                    HOME.setProperty("Oldaeon_tools_Colorcpa", HOME.getProperty("aeon_tools_Colorcpa"))
+                    HOME.setProperty("Oldaeon_tools_CColorcpa", HOME.getProperty("aeon_tools_CColorcpa"))
+                    HOME.setProperty('aeon_tools_7978ImageUpdating', '0')
+                    Color_Only(self.aeont_image_now_cpa, "aeon_tools_Colorcpa", "aeon_tools_CColorcpa", "aeon_tools_FColorcpa")
+                except:
+                    HOME.setProperty('aeon_tools_7978ImageUpdating', '1')
+                    log("Could not process image for cpa daemon")
                     HOME.setProperty('aeon_tools_7978ImageUpdating', '1')
             if not HOME.getProperty("cfa_aeon_set") == 'none':
                 self.aeont_image_now_cfa = xbmc.getInfoLabel("Control.GetLabel(7977)")
                 if self.aeont_image_now_cfa != self.aeont_image_prev_cfa:
                     self.aeont_image_prev_cfa = self.aeont_image_now_cfa
-                    try:
-                        HOME.setProperty("aeon_tools_OldColorcfa", HOME.getProperty("aeon_tools_Colorcfa"))
-                        HOME.setProperty("aeon_tools_OldCColorcfa", HOME.getProperty("aeon_tools_CColorcfa"))
-                        HOME.setProperty('aeon_tools_7977ImageUpdating', '0')
-                        Color_Only(self.aeont_image_now_cfa, "aeon_tools_Colorcfa", "aeon_tools_CColorcfa", "aeon_tools_FColorcfa")
-                    except:
-                        HOME.setProperty('aeon_tools_7977ImageUpdating', '1')
-                        log("Could not process image for cfa daemon")
+
+                    HOME.setProperty("Oldaeon_tools_Colorcfa", HOME.getProperty("aeon_tools_Colorcfa"))
+                    HOME.setProperty("Oldaeon_tools_CColorcfa", HOME.getProperty("aeon_tools_CColorcfa"))
+                    HOME.setProperty('aeon_tools_7977ImageUpdating', '0')
+                    Color_Only(self.aeont_image_now_cfa, "aeon_tools_Colorcfa", "aeon_tools_CColorcfa", "aeon_tools_FColorcfa")
+
+                    HOME.setProperty('aeon_tools_7977ImageUpdating', '1')
+                    log("Could not process image for cfa daemon")
                     HOME.setProperty('aeon_tools_7977ImageUpdating', '1')
             self.aeont_image_now = xbmc.getInfoLabel("Player.Art(thumb)")
             self.aeont_image_now_fa = xbmc.getInfoLabel("MusicPlayer.Property(Fanart_Image)")
@@ -80,14 +88,14 @@ class Aeon_Tools_Main:
         HOME.setProperty(self.prefix + 'aeon_tools_ImageUpdating', '0')
         for info in self.infos:
             if info == 'overall_color':
-                HOME.setProperty(self.prefix + "ImageOldColor", HOME.getProperty(self.prefix + "ImageOldColor"))
-                HOME.setProperty(self.prefix + "ImageOldCColor", HOME.getProperty(self.prefix + "ImageOldCColor"))
+                HOME.setProperty(self.prefix + "ImageOldColor", HOME.getProperty(self.prefix + "ImageColor"))
+                HOME.setProperty(self.prefix + "ImageOldCColor", HOME.getProperty(self.prefix + "ImageCColor"))
                 imagecolor = Color_Only(self.id)
                 HOME.setProperty(self.prefix + "ImageColor", imagecolor)
                 HOME.setProperty(self.prefix + "ImageCColor", Complementary_Color(imagecolor))
             elif info == 'frequent_color':
-                HOME.setProperty(self.prefix + "ImageOldColor", HOME.getProperty(self.prefix + "ImageOldColor"))
-                HOME.setProperty(self.prefix + "ImageOldCColor", HOME.getProperty(self.prefix + "ImageOldCColor"))
+                HOME.setProperty(self.prefix + "ImageOldColor", HOME.getProperty(self.prefix + "ImageColor"))
+                HOME.setProperty(self.prefix + "ImageOldCColor", HOME.getProperty(self.prefix + "ImageCColor"))
                 imagecolor = Frequent_Color(self.id)
                 HOME.setProperty(self.prefix + "ImageColor", imagecolor)
                 HOME.setProperty(self.prefix + "ImageCColor", Complementary_Color(imagecolor))
