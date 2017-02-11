@@ -113,8 +113,8 @@ def Color_Only(filterimage, var1, var2, var3):
         imagecolor, cimagecolor, fimagecolor = aeont_colors_dict[md5].split(':')
     var3 = 'Old' + var1
     var4 = 'Old' + var2
-    Linear_Gradient_Hex(var1, HOME.getProperty(var3)[2:8], imagecolor[2:8], 100)
-    Linear_Gradient_Hex(var2, HOME.getProperty(var4)[2:8], cimagecolor[2:8], 100)
+    Linear_Gradient_Hex(var1, HOME.getProperty(var3)[2:8], imagecolor[2:8], 100, 0.01, var3)
+    Linear_Gradient_Hex(var2, HOME.getProperty(var4)[2:8], cimagecolor[2:8], 100, 0.01, var4)
     HOME.setProperty(var3, fimagecolor)
     return imagecolor, cimagecolor, fimagecolor
 
@@ -165,7 +165,7 @@ def clamp(x):
     return max(0, min(x, 255))
 
 
-def Linear_Gradient_Hex(var1, start_hex="000000", finish_hex="FFFFFF", n=10, sleep=0.005):
+def Linear_Gradient_Hex(var1, start_hex="000000", finish_hex="FFFFFF", n=10, sleep=0.005, _thread_check=""):
     ''' returns a gradient list of (n) colors between
     two hex colors. start_hex and finish_hex
     should be the full six-digit color string,
@@ -186,6 +186,8 @@ def Linear_Gradient_Hex(var1, start_hex="000000", finish_hex="FFFFFF", n=10, sle
         ]
         # Add it to our list of output colors
         HOME.setProperty(var1, RGB_to_hex(curr_vector))
+        if HOME.getProperty(_thread_check)[2:8] != start_hex:
+            thread.exit()
         time.sleep(sleep)
     return
 
