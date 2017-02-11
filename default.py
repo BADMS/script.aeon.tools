@@ -48,8 +48,8 @@ class Aeon_Tools_Main:
                     try:
                         HOME.setProperty("Oldaeon_tools_Colorcpa", HOME.getProperty("aeon_tools_Colorcpa"))
                         HOME.setProperty("Oldaeon_tools_CColorcpa", HOME.getProperty("aeon_tools_CColorcpa"))
-                        t = Thread(target=Color_Only, args=(self.aeont_image_now_cpa, "aeon_tools_Colorcpa", "aeon_tools_CColorcpa", "aeon_tools_FColorcpa"))
-                        t.start()
+                        tp = Thread(target=Color_Only, args=(self.aeont_image_now_cpa, "aeon_tools_Colorcpa", "aeon_tools_CColorcpa", "aeon_tools_FColorcpa"))
+                        tp.start()
                     except:
                         log("Could not process image for cpa daemon")
             if not HOME.getProperty("cfa_aeon_set") == 'none':
@@ -59,8 +59,8 @@ class Aeon_Tools_Main:
                     try:
                         HOME.setProperty("Oldaeon_tools_Colorcfa", HOME.getProperty("aeon_tools_Colorcfa"))
                         HOME.setProperty("Oldaeon_tools_CColorcfa", HOME.getProperty("aeon_tools_CColorcfa"))
-                        t = Thread(target=Color_Only, args=(self.aeont_image_now_cfa, "aeon_tools_Colorcfa", "aeon_tools_CColorcfa", "aeon_tools_FColorcfa"))
-                        t.start()
+                        tf = Thread(target=Color_Only, args=(self.aeont_image_now_cfa, "aeon_tools_Colorcfa", "aeon_tools_CColorcfa", "aeon_tools_FColorcfa"))
+                        tf.start()
                     except:
                         log("Could not process image for cfa daemon")
             xbmc.sleep(200)
