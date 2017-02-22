@@ -187,7 +187,7 @@ def Linear_Gradient_Hex(var1, start_hex="000000", finish_hex="FFFFFF", n=10, sle
         # Add it to our list of output colors
         HOME.setProperty(var1, RGB_to_hex(curr_vector))
         if HOME.getProperty(_thread_check)[2:8] != start_hex:
-            thread.exit()
+            return
         time.sleep(sleep)
     return
 
